@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { Reveal, RevealStagger, staggerItem } from "./Reveal";
 import howPhone from "@/assets/how-phone.jpg";
 
@@ -21,6 +22,13 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 0.92]);
+
   return (
     <section id="how" className="bg-lime/85 py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-10">
@@ -33,14 +41,15 @@ export function HowItWorks() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="relative mt-10 overflow-hidden rounded-[1.75rem]">
-            <img
+          <div ref={imgRef} className="relative mt-10 overflow-hidden rounded-[1.75rem]">
+            <motion.img
               src={howPhone}
               alt="A hand holding a phone showing the ImmediatePay app inside a warm cafe"
               loading="lazy"
               width={1600}
               height={900}
-              className="block aspect-[16/8] h-auto w-full object-cover"
+              style={{ scale: imgScale }}
+              className="block aspect-[16/8] h-auto w-full object-cover will-change-transform"
             />
           </div>
         </Reveal>

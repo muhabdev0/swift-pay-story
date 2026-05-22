@@ -9,7 +9,7 @@ export function Feature() {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1.04]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.18, 1, 0.92]);
 
   return (
     <section id="feature" className="bg-mint py-24 md:py-36">
