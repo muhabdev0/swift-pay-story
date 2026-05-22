@@ -2,11 +2,21 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 const links = [
-  { label: "Product", href: "#feature" },
-  { label: "How it works", href: "#how" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "About", href: "#cta" },
+  { label: "Solution", href: "#feature" },
+  { label: "For Employees", href: "#how" },
+  { label: "Partnerships", href: "#reviews" },
+  { label: "Resources", href: "#cta" },
+  { label: "Contact Us", href: "#footer" },
 ];
+
+function Wordmark() {
+  return (
+    <a href="#top" className="flex items-baseline gap-0.5 font-serif text-[1.55rem] leading-none tracking-tight text-ink">
+      <span>Immediate</span>
+      <span className="text-forest">.</span>
+    </a>
+  );
+}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,24 +32,22 @@ export function Nav() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/75 backdrop-blur-md border-b border-border/50"
+          ? "bg-mint/85 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-6 md:px-10">
-        <a href="#top" className="font-serif text-2xl tracking-tight text-ink">
-          ImmediatePay
-        </a>
+      <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between px-6 md:px-10">
+        <Wordmark />
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-9 lg:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-foreground/75 transition-colors hover:text-ink"
+              className="text-[13.5px] text-ink/80 transition-colors hover:text-ink"
             >
               {l.label}
             </a>
@@ -48,10 +56,9 @@ export function Nav() {
 
         <a
           href="#cta"
-          className="group inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-medium text-forest-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          className="inline-flex items-center rounded-full border border-forest/80 px-5 py-2.5 text-[13px] font-medium text-forest transition-all hover:bg-forest hover:text-forest-foreground"
         >
-          Download app
-          <span className="transition-transform group-hover:translate-x-0.5">→</span>
+          Schedule Demo
         </a>
       </div>
     </motion.header>
