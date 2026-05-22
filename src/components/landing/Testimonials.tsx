@@ -5,97 +5,89 @@ import t2 from "@/assets/testimonial-2.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const reviews = [
+  {
+    quote:
+      "I have ImmediatePay and it's the best security blanket that I have. It's fast and it's very quick. I hit two buttons and I'm done. My money's in the bank. I don't have to constantly worry. I can pay my bill and I can move on to the next thing!",
+    name: "Jeannie S.",
+    role: "ImmediatePay user",
+  },
+  {
+    quote:
+      "Sign up was a piece of cake. It only took a moment and I had access to my earned pay. Immediate is fast, simple, and easy.",
+    name: "Forrest S.",
+    role: "ImmediatePay user",
+  },
+];
+
+function QuoteCard({ quote, name, role, delay }: { quote: string; name: string; role: string; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.85, ease, delay }}
+      className="flex h-full flex-col justify-between rounded-[1.25rem] bg-card p-6 shadow-[var(--shadow-card)] ring-1 ring-ink/[0.04] md:p-7"
+    >
+      <p className="text-[14.5px] leading-relaxed text-ink/85">{quote}</p>
+      <div className="mt-6 flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-ink">{name}</p>
+          <p className="text-xs text-ink/55">{role}</p>
+        </div>
+        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-mint text-forest" aria-hidden>
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
+            <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5a3.17 3.17 0 013.17-3.17V6h-1zm10 0A5.17 5.17 0 0012 11.17V18h6.83v-6.83H15a3.17 3.17 0 013.17-3.17V6h-1z" />
+          </svg>
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+function ImageCard({ src, alt, delay, rotate }: { src: string; alt: string; delay: number; rotate: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24, rotate }}
+      whileInView={{ opacity: 1, y: 0, rotate }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.85, ease, delay }}
+      className="overflow-hidden rounded-[1.25rem] shadow-[var(--shadow-card)]"
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        width={960}
+        height={1216}
+        className="block aspect-[4/5] h-auto w-full object-cover"
+      />
+    </motion.div>
+  );
+}
+
 export function Testimonials() {
   return (
-    <section id="reviews" className="bg-background py-28 md:py-36">
-      <div className="mx-auto max-w-[1240px] px-6 md:px-10">
-        <div className="rounded-[2.5rem] bg-lime-soft px-6 py-20 md:px-16 md:py-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <p className="eyebrow text-forest/70">Reviews</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 font-serif text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.04] tracking-tight text-ink">
-                Happy customers, great reviews.
-              </h2>
-            </Reveal>
-          </div>
+    <section id="reviews" className="bg-lime/85 pb-28 md:pb-36">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+        <div className="text-center">
+          <Reveal>
+            <h2 className="font-serif text-[clamp(2.2rem,5vw,4.25rem)] leading-[1.04] tracking-[-0.015em] text-ink">
+              Happy customers, great reviews
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-4 text-[13px] text-ink/65">
+              See what ImmediatePay users say about us
+            </p>
+          </Reveal>
+        </div>
 
-          <div className="mt-16 grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-8">
-            {/* Left image card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: -1.5 }}
-              whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease, delay: 0.05 }}
-              className="md:col-span-3"
-            >
-              <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
-                <img
-                  src={t1}
-                  alt="Maya, customer"
-                  loading="lazy"
-                  width={960}
-                  height={1216}
-                  className="block aspect-[4/5] h-auto w-full object-cover"
-                />
-              </div>
-              <p className="mt-4 px-1 text-sm">
-                <span className="font-medium text-ink">Maya R.</span>{" "}
-                <span className="text-foreground/60">— Brooklyn, NY</span>
-              </p>
-            </motion.div>
-
-            {/* Center quote card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.9, ease, delay: 0.15 }}
-              className="md:col-span-6"
-            >
-              <div className="rounded-2xl bg-card p-10 shadow-[var(--shadow-float)] ring-1 ring-border/50 md:p-14">
-                <div className="flex items-center gap-1 text-lime">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span key={i} aria-hidden>★</span>
-                  ))}
-                </div>
-                <blockquote className="mt-6 font-serif text-2xl leading-snug text-ink md:text-3xl">
-                  “Truly a quiet relief. I clocked out, opened the app, and my
-                  earnings were just… there. No drama, no waiting, no fees that
-                  made me wince.”
-                </blockquote>
-                <div className="mt-8 flex items-center justify-between text-sm">
-                  <span className="font-medium text-ink">Jordan M.</span>
-                  <span className="text-foreground/60">Verified user</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right image card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 1.5 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease, delay: 0.25 }}
-              className="md:col-span-3"
-            >
-              <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
-                <img
-                  src={t2}
-                  alt="Diego, customer"
-                  loading="lazy"
-                  width={960}
-                  height={1216}
-                  className="block aspect-[4/5] h-auto w-full object-cover"
-                />
-              </div>
-              <p className="mt-4 px-1 text-sm">
-                <span className="font-medium text-ink">Diego A.</span>{" "}
-                <span className="text-foreground/60">— Austin, TX</span>
-              </p>
-            </motion.div>
-          </div>
+        <div className="mt-14 grid grid-cols-1 items-stretch gap-5 md:grid-cols-4 md:gap-6">
+          <ImageCard src={t1} alt="Jeannie, ImmediatePay user" delay={0.05} rotate={-1} />
+          <QuoteCard {...reviews[0]} delay={0.15} />
+          <ImageCard src={t2} alt="Forrest, ImmediatePay user" delay={0.25} rotate={1} />
+          <QuoteCard {...reviews[1]} delay={0.35} />
         </div>
       </div>
     </section>
