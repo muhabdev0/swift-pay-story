@@ -6,7 +6,7 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Testimonials } from "@/components/landing/Testimonials";
 import { CTA } from "@/components/landing/CTA";
 import { Footer } from "@/components/landing/Footer";
-import heroPhone from "@/assets/hero-phone.jpg";
+import heroPeople from "@/assets/hero-people.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
