@@ -25,10 +25,10 @@ export const Route = createFileRoute("/")({
         content:
           "Earned wage access for modern teams and the people who power them.",
       },
-      { property: "og:image", content: heroPhone },
+      { property: "og:image", content: heroPeople },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: heroPhone },
+      { name: "twitter:image", content: heroPeople },
     ],
   }),
   component: Index,
