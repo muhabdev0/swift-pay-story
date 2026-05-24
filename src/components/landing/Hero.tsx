@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import heroHandPhone from "@/assets/hero-hand-phone.jpg";
+import heroHandPhone from "@/assets/hero-hand-phone.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
