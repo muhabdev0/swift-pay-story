@@ -68,7 +68,7 @@ export function Testimonials() {
     const id = setInterval(() => {
       if (emblaApi.canScrollNext()) emblaApi.scrollNext();
       else emblaApi.scrollTo(0);
-    }, 500);
+    }, 1500);
     return () => clearInterval(id);
   }, [emblaApi]);
 
