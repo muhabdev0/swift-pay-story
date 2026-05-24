@@ -63,6 +63,15 @@ export function Testimonials() {
     onSelect();
   }, [emblaApi]);
 
+  useEffect(() => {
+    if (!emblaApi) return;
+    const id = setInterval(() => {
+      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+      else emblaApi.scrollTo(0);
+    }, 500);
+    return () => clearInterval(id);
+  }, [emblaApi]);
+
   return (
     <section id="reviews" className="bg-lime/85 py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-10">
