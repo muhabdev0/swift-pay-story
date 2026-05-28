@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import heroHandPhone from "@/assets/hero-hand-phone.png";
+import heroHandPhone from "@/assets/hero-hand-phone-v2.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -82,8 +82,8 @@ export function Hero() {
           <motion.img
             src={heroHandPhone}
             alt="A hand holding a phone showing the ImmediatePay app"
-            width={1024}
-            height={1536}
+            width={864}
+            height={1323}
             style={{ y: imgY, scale: imgScale }}
             className="mx-auto block h-auto w-full max-w-[440px] select-none drop-shadow-[0_30px_60px_rgba(20,40,30,0.18)] md:max-w-none"
           />
